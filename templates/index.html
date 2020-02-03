@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Shadow.by</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='style.css', v=1)}}">
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/"><div class="main_img"></div></a></li>
+                <li>
+                    <ul>
+                        <li><a href="" class="menu"> Категории </a></li>
+                        <li><a href="" class="menu"> Дополнительно </a></li>
+                        <li><a href="" class="menu"> Категории </a></li>
+                        <li><a href="" class="menu"> Дополнительно </a></li>
+                        <li>
+                            <ul class="menu_li">
+                                <li class="search"><input type="search" name="q" placeholder=" Поиск по сайту" class="search"></li>
+                                <li class="search"><input type="submit" value="Найти" class="search"></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        {% for i in all %}
+            <div class="Article">
+                {{ i['name'] }} <br /><br />
+                <a href="{{ i['link'] }}"> {{ i['header'] }} </a> <br />
+                {{ i['text'] }}
+            </div>
+            <hr>
+        {% endfor %}
+    </body>
+</html>
