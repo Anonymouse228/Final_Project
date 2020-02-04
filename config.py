@@ -55,39 +55,6 @@ class RussiaToday():
                 self.text.append(' '.join(i.find('a', attrs={'class': 'link link_color'}).text.split()))
 
 
-'''class CNN():
-    name = 'cnn.com'  Это гейство не работает, я больше так не могу! я потратил на это столько же времени,
-                      как и на остальные 4 класса!!! Но оно не работает!!!!!! Ненавижу cnn.
-                      
-    url = 'https://edition.cnn.com/world'
-
-    session = requests.Session()
-    connect = session.get(url, headers=headers)
-    html = BS(connect.content, 'html.parser')
-
-    def __init__(self):
-        self.text = ''
-        count = 0
-        for i in range(6):
-            for element in CNN.html.find_all('div', attrs={'class': 'column zn__column--idx-' + str(i)}):
-                self.title = element.find('span', attrs={'class': 'cd__headline-text'}).text
-                if 'http' in element.find('a')['href']:
-                    self.href = element.find('a')['href']
-                else:
-                    self.href = 'https://edition.cnn.com' + element.find('a')['href']
-                for j in element.find_all('li'):
-                    if j.find('span', attrs={'class': 'cd__headline-text'}):
-                        self.text = self.text + j.find('span', attrs={'class': 'cd__headline-text'}).text + ' '
-                print(self.title)
-                print(self.href)
-                print(self.text)
-                print()
-                self.text = ''
-                count += 1
-                if count % 6 > 4:
-                    break'''
-
-
 class Onliner():
     name = 'Onliner.by'
 
