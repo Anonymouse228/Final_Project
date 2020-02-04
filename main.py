@@ -1,5 +1,5 @@
 from app import app
-import view, time
+import view
 
 
 if __name__ == '__main__':
