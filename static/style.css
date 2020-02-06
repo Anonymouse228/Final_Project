@@ -1,91 +1,163 @@
 a {
-    color: #00E61D;
+    color: #CAFFFF;
     font-size: 20px;
     text-decoration: none;
+    font: 15pt consolas;
 }
 
 a:hover{
     color: #FF4141;
 }
 
-.main_img{
-    margin-left: 40px;
-    background-image: url(images/final_logo.png);
-    width: 265px;
-    height: 67px;
+.title {
+    color: #E8E6E3;
+    font: 42pt consolas;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 0px;
 }
 
-.Article {
-    color: #AAA7AA;
-    font-size: 20px;
-    border: 2px solid #7D7D7D;
-    margin-top: 10px;
-    margin-left: 20px;
-    padding: 10px;
-    border-radius: 15px;
-    width: 75%;
-}
-
-nav {
+.nav_menu {
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
+    background: #3D4144;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    height: 63px;
 }
 
-nav:before {
-    margin-left: 1%;
-    content: '';
+.nav_menu > ul {
+    display: flex;
+    justify-content: center;
+    /*width: 100%;*/
+    background: #3D4144;
+}
+
+.nav_menu > ul li a {
     display: block;
-    height: 67px;
-    width: 98%;
-    background: #585A5B;
-    position: absolute;
-    left: 0;
-    z-index: -1;
-    border-radius: 100px;
 }
 
 ul {
+    top: 0;
+    position: fixed;
     margin: 0;
     padding: 0;
     list-style: none;
-    height: 67px;
+    height: 63px;
 }
 
 ul li {
-    float: left;
+    /*float: left;*/
+    border-right: 1px solid #565B5F;
 }
 
 .menu {
-    display: block;
-    height: 67px;
-    padding: 0 20px;
-    line-height: 67px;
-    font-size: 25px;
+    /*display: flex;*/
+    height: 63px;
+    padding: 0 35px;
+    line-height: 63px;
+    font-size: 24px;
+    transition: all 0.3s ease;
 }
 
 .menu:hover {
-    background: #151515;
+    transition: all 0.3s ease;
+    background: #191B1D;
+    color: #FFFFFF;
+    font-size: 29px;
+    height: 280px;
 }
 
-.search {
-    margin-left: 5px;
-    font-size: 25px;
-    border-radius: 100px;
+form {
+    margin-top: 10px;
+    display: flex;
 }
 
-.menu_li {
-    margin-left: 0px;
-    margin-top: 16px;
+{box-sizing: border-box;}
+form {
+  position: relative;
+  width: 300px;
+  margin-top: 7px;
+  margin-left: 15px;
+}
+input {
+  font-size: 17px;
+  width: 100%;
+  height: 42px;
+  padding-left: 10px;
+  border: 2px solid #7BA7AB;
+  border-radius: 5px;
+  outline: none;
+  background: #F9F0DA;
+  color: #9E9C9C;
+}
+button {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #7BA7AB;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+button:before {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 20px;
+  color: #F9F0DA;
 }
 
-hr {
-    border: none;
-    background-color: #00E61D;
-    height: 1px;
-    width: 75%;
-    margin-left: 2%;
+.Article {
+    left: 0;
+    color: #AAA7AA;
+    font-size: 20px;
+    border-bottom: 1px solid #565B5F;
+    border-right: 1px solid #565B5F;
+    margin-left: 20px;
+    padding: 10px;
+    width: 1101px;
+    font: 15pt consolas;
 }
 
 body {
     background: #232526;
+}
+
+li#form {
+     border-right: none;
+}
+
+/*sub menu*/
+.nav_menu li ul {
+    margin-top: 63px;
+    position: absolute;
+    min-width: 190px;
+    opacity: 0; /* По умолчанию скрываем подменю */
+    visibility: hidden;
+    transition-property: opacity, visibility, min-width; /* Важно чтобы transition применялось к обоим свойствам */
+    transition-duration: 0.3s; /* Добавляем анимацию 0.3 сек. */
+    /*transition-delay: 0.3s;*/ /* Добавляем задержку в 0.15 сек. */
+}
+
+.nav_menu li > ul li {
+    text-align: center;
+    font-size: 20px;
+}
+
+.nav_menu li > ul li a {
+    padding: 10px;
+    text-transform: none;
+    background: #191B1D;
+}
+
+.nav_menu li:hover > ul  {
+    opacity: 1; /* Показываем подменю при ховере */
+    visibility: visible;
+    transition: all 0.3s ease;
+    min-width: 215px;
 }
