@@ -1,29 +1,40 @@
 from flask import Flask
-from config import Configuration, Tut, RussiaToday, Onliner, iXBT
-import random
+from config import Configuration, categories, Tut, RussiaToday, Onliner, iXBT
+import random, json, datetime
+
+
+def sort_col(i):
+    return i['time']
+
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
 
-all = []
-block = []
+
+all_news = []
+norm_time = []
 sites = [Tut(), RussiaToday(), Onliner(), iXBT()]
-max_len = 0
 
 for i in sites:
     i.get_news()
-    if len(i.href) > max_len:
-        max_len = len(i.href)
-for i in range(max_len):
-    for j in sites:
-        if i >= len(j.href):
-            continue
-        data = {'name': j.name,
-                'link': j.href[i],
-                'header': j.title[i],
-                'text': j.text[i]}
-        block.append(data)
-    random.shuffle(block)
-    for j in block:
-        all.append(j)
-    block = []
+    all_news += i.all_news
+all_news.sort(key=sort_col, reverse=True)
+
+try:
+    with open('static/articles/article_list.json', "r", encoding='utf8') as read_file:
+        old_news = json.load(read_file)
+
+    new_news = []
+    for i in all_news:
+        if i not in old_news:
+            new_news.append(i)
+
+    all_news = new_news + old_news
+
+    with open('static/articles/article_list.json', "w", encoding='utf8') as f:
+        json.dump(all_news, f, ensure_ascii=False)
+except Exception:
+    with open('static/articles/article_list.json', "w", encoding='utf8') as f:
+        json.dump(all_news, f, ensure_ascii=False)
+
+print(len(all_news))
