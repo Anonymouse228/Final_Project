@@ -1,6 +1,21 @@
 from app import app, all_news
-from flask import render_template, request
+from flask import render_template, request, json
 from config import categories
+
+section = []
+
+for i in categories:
+    section_news = []
+    for j in all_news:
+        if j['section'] == i[1]:
+            section_news.append(j)
+    section.append(section_news)
+
+
+@app.route('/github', methods=['POST'])
+def api_gh_message():
+    if request.headers['Content-Type'] == 'application/json':
+        return json.dumps(request.json)
 
 
 @app.route('/')
@@ -20,45 +35,24 @@ def search():
 
 @app.route('/daynews')
 def daynews():
-    result = []
-    for i in all_news:
-        if 'daynews' in i["section"]:
-            result.append(i)
-    return render_template('index.html', all=result, categories=categories)
+    return render_template('index.html', all=section[0], categories=categories)
 
 
 @app.route('/opinion')
 def opinion():
-    result = []
-    for i in all_news:
-        if i["section"] == 'opinion':
-            result.append(i)
-    return render_template('index.html', all=result, categories=categories)
+    return render_template('index.html', all=section[1], categories=categories)
 
 
 @app.route('/auto')
 def auto():
-    result = []
-    for i in all_news:
-        if i["section"] == 'auto':
-            result.append(i)
-    return render_template('index.html', all=result, categories=categories)
+    return render_template('index.html', all=section[2], categories=categories)
 
 
 @app.route('/tech')
 def tech():
-    result = []
-    for i in all_news:
-        if 'tech' in i["section"]:
-            result.append(i)
-    return render_template('index.html', all=result, categories=categories)
+    return render_template('index.html', all=section[3], categories=categories)
 
 
 @app.route('/realty')
 def realty():
-    result = []
-    for i in all_news:
-        if i["section"] == 'realt':
-            result.append(i)
-    return render_template('index.html', all=result, categories=categories)
-
+    return render_template('index.html', all=section[4], categories=categories)
