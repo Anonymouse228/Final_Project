@@ -1,37 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru-RU">
     <head>
         <meta charset="UTF-8"/>
         <title>Shadow.by</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='style.css', v=1)}}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='style.css')}}">
     </head>
     <body>
-        <nav>
+        <nav class="nav_menu">
             <ul>
-                <li><a href="/"><div class="main_img"></div></a></li>
-                <li>
+                <li><a href="/"><div class="title">SHADOW.BY</div></a></li>
+                <li><a href="" class="menu"> Категории </a>
                     <ul>
-                        <li><a href="" class="menu"> Категории </a></li>
-                        <li><a href="" class="menu"> Дополнительно </a></li>
-                        <li><a href="" class="menu"> Категории </a></li>
-                        <li><a href="" class="menu"> Дополнительно </a></li>
-                        <li>
-                            <ul class="menu_li">
-                                <li class="search"><input type="search" name="q" placeholder=" Поиск по сайту" class="search"></li>
-                                <li class="search"><input type="submit" value="Найти" class="search"></li>
-                            </ul>
-                        </li>
+                        {% for i in categories %}
+                        <li><a href="{{ i[1] }}">{{ i[0] }}</a></li>
+                        {% endfor %}
                     </ul>
+                </li>
+                <li><a href="" class="menu" id="sites"> Источники </a></li>
+                <li><a href="" class="menu"> Категории </a></li>
+                <li><a href="" class="menu"> Дополнительно </a>
+                </li>
+                <li id="form">
+                    <form action="/search">
+                        <input name="data" type="text" placeholder="Искать здесь...">
+                        <button type="submit"></button>
+                    </form>
                 </li>
             </ul>
         </nav>
+        <br /><br /><br />
         {% for i in all %}
             <div class="Article">
-                {{ i['name'] }} <br /><br />
-                <a href="{{ i['link'] }}"> {{ i['header'] }} </a> <br />
+                    {{ i['name'] }} {{ i['norm_time'] }}
+                    <br /><br />
+                <a href="{{ i['link'] }}" target="_blank"> {{ i['header'] }} </a> <br />
                 {{ i['text'] }}
             </div>
-            <hr>
         {% endfor %}
     </body>
 </html>
